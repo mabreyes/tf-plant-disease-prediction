@@ -43,7 +43,7 @@ def read_tensor_from_image_file(file_name,
                                 input_std=255):
     input_name = "file_reader"
     output_name = "normalized"
-    file_reader = tf.read_file(file_name, input_name)
+    file_reader = tf.io.read_file(file_name, input_name)
     if file_name.endswith(".png"):
         image_reader = tf.image.decode_png(
             file_reader, channels=3, name="png_reader")
