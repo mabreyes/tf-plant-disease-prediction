@@ -14,11 +14,10 @@ from weasyprint import HTML
 
 import io
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import os
 import base64
 
-import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 
 TF_GRAPH = "{base_path}/graph/output_graph.pb".format(
