@@ -18,6 +18,9 @@ import tensorflow as tf
 import os
 import base64
 
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 TF_GRAPH = "{base_path}/graph/output_graph.pb".format(
     base_path=os.path.abspath(os.path.dirname(__file__)))
 TF_LABELS = "{base_path}/graph/output_labels.txt".format(
@@ -26,7 +29,7 @@ TF_LABELS = "{base_path}/graph/output_labels.txt".format(
 
 def load_graph(model_file):
     graph = tf.Graph()
-    graph_def = tf.compat.v1.GraphDef()
+    graph_def = tf.GraphDef()
 
     with open(model_file, "rb") as f:
         graph_def.ParseFromString(f.read())
@@ -43,7 +46,7 @@ def read_tensor_from_image_file(file_name,
                                 input_std=255):
     input_name = "file_reader"
     output_name = "normalized"
-    file_reader = tf.io.read_file(file_name, input_name)
+    file_reader = tf.read_file(file_name, input_name)
     if file_name.endswith(".png"):
         image_reader = tf.image.decode_png(
             file_reader, channels=3, name="png_reader")
