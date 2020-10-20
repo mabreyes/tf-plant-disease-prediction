@@ -18,6 +18,9 @@ import tensorflow as tf
 import os
 import base64
 
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 TF_GRAPH = "{base_path}/graph/output_graph.pb".format(
     base_path=os.path.abspath(os.path.dirname(__file__)))
 TF_LABELS = "{base_path}/graph/output_labels.txt".format(
